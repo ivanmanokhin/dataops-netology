@@ -16,33 +16,33 @@
     
     (df.where((col('date') == '2020-03-31')
               & (~col('iso_code').like('%OWID_%')))
-       .orderBy(col('total_cases').desc())
        .select('iso_code',
                col('location').alias('страна'),
                (round((col('total_cases') - col('total_deaths')) / col('population') * 100, 3)).alias('процент переболевших'))
+       .orderBy(col('процент переболевших').desc())
        .limit(15)
        .show())
     ```
     ```
-    +--------+--------------+--------------------+
-    |iso_code|        страна|процент переболевших|
-    +--------+--------------+--------------------+
-    |     USA| United States|               0.056|
-    |     ITA|         Italy|               0.154|
-    |     ESP|         Spain|               0.187|
-    |     CHN|         China|               0.005|
-    |     DEU|       Germany|               0.085|
-    |     FRA|        France|               0.072|
-    |     IRN|          Iran|                0.05|
-    |     GBR|United Kingdom|               0.054|
-    |     CHE|   Switzerland|               0.187|
-    |     TUR|        Turkey|               0.016|
-    |     BEL|       Belgium|               0.104|
-    |     NLD|   Netherlands|               0.068|
-    |     AUT|       Austria|               0.112|
-    |     KOR|   South Korea|               0.019|
-    |     CAN|        Canada|               0.022|
-    +--------+--------------+--------------------+
+    +--------+-----------+--------------------+
+    |iso_code|     страна|процент переболевших|
+    +--------+-----------+--------------------+
+    |     SMR| San Marino|               0.619|
+    |     AND|    Andorra|               0.471|
+    |     LUX| Luxembourg|               0.344|
+    |     ISL|    Iceland|               0.332|
+    |     ESP|      Spain|               0.187|
+    |     CHE|Switzerland|               0.187|
+    |     ITA|      Italy|               0.154|
+    |     MCO|     Monaco|                0.13|
+    |     AUT|    Austria|               0.112|
+    |     BEL|    Belgium|               0.104|
+    |     DEU|    Germany|               0.085|
+    |     NOR|     Norway|               0.085|
+    |     FRA|     France|               0.072|
+    |     PRT|   Portugal|               0.071|
+    |     NLD|Netherlands|               0.068|
+    +--------+-----------+--------------------+
     ```
 
 2. Top 10 стран с максимальным зафиксированным кол-вом новых случаев за последнюю неделю марта 2021 в отсортированном порядке по убыванию (в выходящем датасете необходимы колонки: число, страна, кол-во новых случаев)
