@@ -87,15 +87,15 @@
 
     ```python
     (df.where((col('date').between('2021-03-29', '2021-03-31'))
-          & (~col('iso_code').like('%OWID_%')))
-   .orderBy(col('location'), col('new_cases').desc())
-   .groupBy(col('location')).agg(first('new_cases').alias('new_cases'), first('date').alias('date'))
-   .orderBy(col('new_cases').desc())
-   .select(date_format('date', 'yyyy-MM-dd').alias('число'),
-           col('location').alias('страна'),
-           col('new_cases').alias('кол-во новых случаев'))
-   .limit(10)
-   .show())
+              & (~col('iso_code').like('%OWID_%')))
+       .orderBy(col('location'), col('new_cases').desc())
+       .groupBy(col('location')).agg(first('new_cases').alias('new_cases'), first('date').alias('date'))
+       .orderBy(col('new_cases').desc())
+       .select(date_format('date', 'yyyy-MM-dd').alias('число'),
+               col('location').alias('страна'),
+               col('new_cases').alias('кол-во новых случаев'))
+       .limit(10)
+       .show())
     ```
     ```
     +----------+-------------+--------------------+
