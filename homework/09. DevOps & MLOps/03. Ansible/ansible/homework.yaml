@@ -1,0 +1,33 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: ping servers
+      ansible.builtin.ping:
+
+    - name: install packages
+      ansible.builtin.package:
+        name: '{{ item }}'
+        state: latest
+        update_cache: yes
+      loop: '{{ packages }}'
+
+    - name: update all packages
+      ansible.builtin.package:
+        upgrade: dist
+
+    - name: copy test.txt
+      ansible.builtin.copy:
+        src: test.txt
+        dest: /tmp/test.txt
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: create users
+      ansible.builtin.user:
+        name: '{{ item }}'
+        home: '/home/{{ item }}'
+        shell: /bin/bash
+        state: present
+      loop: '{{ users }}'

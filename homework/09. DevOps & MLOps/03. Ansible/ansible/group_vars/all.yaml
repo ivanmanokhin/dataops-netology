@@ -1,0 +1,14 @@
+---
+ansible_user: ansible
+
+packages: 
+  - net-tools
+  - git
+  - tree
+  - htop
+  - mc
+  - vim
+
+users:
+  - devops_1
+  - test_1

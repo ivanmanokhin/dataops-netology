@@ -1,0 +1,9 @@
+---
+all:
+  children:
+    netology:
+      hosts:
+        netology-ml-01:
+          ansible_host: 158.160.46.212
+        netology-ml-02:
+          ansible_host: 158.160.36.231
