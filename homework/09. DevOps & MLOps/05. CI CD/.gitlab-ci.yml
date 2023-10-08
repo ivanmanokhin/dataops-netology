@@ -1,0 +1,28 @@
+stages:
+  - build
+  - test
+
+build:
+  stage: build
+  script:
+    - echo "Building"
+    - mkdir build
+    - touch build/info.txt
+  artifacts:
+    paths:
+      - build
+  tags:
+    - netology
+
+test:
+  stage: test
+  script:
+    - echo "Testing"
+    - if [ -f build/info.txt ]; then
+        echo "File exist";
+      else
+        echo "File doesn't exist";
+        exit 1;
+      fi
+  tags:
+    - netology
